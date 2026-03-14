@@ -1,0 +1,33 @@
+global_parameters:
+  c: 3e8                           # speed of light
+  type_tx_signal: pulse             # supported: chirp, pulsed, continuous wave
+  bandwidth: 200e6                  # bandwidth of the signal
+  P_tx: 30                          # transmitted power in watts
+  fs: null                          # calculated as 1.2 * bandwidth
+  wavelength: null                  # calculated as c / fc
+
+tx_parameters:
+  fc: 10e9                          # carrier freq
+  amplitude: 1                      # amplitude of the signal
+  initial_phase_offset: 0
+  pulse:
+    pulse_width: 20e-6              # pulse width
+    n_pulses: 128                   # number of pulses
+    prf: 2000                       # pulse repetition frequency
+    modulation_type: lfm
+  cw:
+    modulation_type: fmcw
+
+antenna_parameters:
+  n_antenna_elements: 8             # number of antenna elements in the array
+  ula_spacing: 0.5                  # spacing between antenna elements
+  Gain: 25                          # gain of the antenna
+  Losses: 3                         # losses in the system
+
+rx_parameters:
+  target_rcs: 1                     # amplitude
+  max_unambiguous_range: 1          # meters
+  n_samples: 2048                   # number of samples per chirp
+  clutter:
+    num_clutter_points: 5
+    clutter_amplitude: 1
