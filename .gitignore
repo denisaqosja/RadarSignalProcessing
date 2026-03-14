@@ -1,3 +1,11 @@
 .idea
 *.pth
 *.pyc
+*.pdf
+*.png
+*.txt
+*.tmp
+*.docx
+
+documentation/
+__pycache__
