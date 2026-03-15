@@ -2,9 +2,10 @@
 This file contains the main steps in transmitting the radar signal
 """
 import torch 
-
-from radar_sim.config import GLOBAL_PARAMETERS, TX_PARAMETERS, ANTENNA_PARAMETERS
+from utils import db_to_linear
 from radar_sim.waveform import PulseRadar, CWRadar
+from radar_sim.config import GLOBAL_PARAMETERS, TX_PARAMETERS, ANTENNA_PARAMETERS
+
 
 
 class Transmitter:
@@ -58,9 +59,8 @@ class Transmitter:
         """
         Amplifies the RF signal before transmission.
         """
-        # given the power gain (in dB) obtain the gain in voltage
-        gain_dB = self.antenna_parameters["Gain"]
-        gain_linear = 10 ** (gain_dB / 20.0)
+        #  Convert dB to linear scale
+        gain_linear = db_to_linear(self.antenna_parameters["Gain"]) 
 
         return gain_linear * x_t
     
