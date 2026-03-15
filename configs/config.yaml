@@ -1,17 +1,15 @@
 global_parameters:
-  c: 3e8                           # speed of light
+  c: 300000000                      # speed of light
   type_tx_signal: pulse             # supported: chirp, pulsed, continuous wave
-  bandwidth: 200e6                  # bandwidth of the signal
+  bandwidth: 200000000              # bandwidth of the signal, 200e6 Hz
   P_tx: 30                          # transmitted power in watts
-  fs: null                          # calculated as 1.2 * bandwidth
-  wavelength: null                  # calculated as c / fc
 
 tx_parameters:
-  fc: 10e9                          # carrier freq
+  fc: 10000000000                   # carrier freq, 10e9 Hz
   amplitude: 1                      # amplitude of the signal
   initial_phase_offset: 0
   pulse:
-    pulse_width: 20e-6              # pulse width
+    pulse_width: 0.00002            # pulse width, 20 micro-seconds
     n_pulses: 128                   # number of pulses
     prf: 2000                       # pulse repetition frequency
     modulation_type: lfm
@@ -31,3 +29,16 @@ rx_parameters:
   clutter:
     num_clutter_points: 5
     clutter_amplitude: 1
+
+target_parameters:
+  point_target:
+    - target_id: 0
+      range_m: 50.0
+      velocity_mps: 10.0
+      rcs_dbsm: 0.0
+    - target_id: 1
+      range_m: 80.0
+      velocity_mps: -5.0
+      rcs_dbsm: -3.0
+  # drones:
+  #   - target_id: 2
