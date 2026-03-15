@@ -1,6 +1,8 @@
 import torch 
 from dataclasses import dataclass
 
+from utils import db_to_linear
+
 
 @dataclass
 class ScatteringCenter:
@@ -43,7 +45,7 @@ class PointTarget:
         self.target_id = target_id
         
         # Convert RCS from dBsm to linear scale
-        self.rcs_linear = 10 ** (rcs_dbsm / 10)
+        self.rcs_linear = db_to_linear(rcs_dbsm)
     
     
     def get_instantaneous_range(self, time_s):
