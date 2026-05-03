@@ -58,9 +58,12 @@ class PulseRadar:
         Returns:
             chirp: the LFM signal
         """
-        k = B / tao                                                          # chirp slope = rate of change of frequency
-        f_chirp = f0 + (k/2) * t                                             # instantaneous frequency of the chirp signal
-        chirp = A * torch.exp(2j * torch.pi * f_chirp * t + phase)
+        # chirp slope (rate of change of frequency)
+        k = B / tao     
+        # instantaneous frequency of the chirp signal                                                    
+        f_chirp = f0 + k * t
+        # complex baseband LFM signal
+        chirp = A * torch.exp(2j * torch.pi * (f0 * t + 0.5*k * t**2) + phase)
 
         return chirp   
     
