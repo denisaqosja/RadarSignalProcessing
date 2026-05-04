@@ -10,9 +10,10 @@ import os, scipy
 import matplotlib.pyplot as plt
 
 from radar_sim.config import load_config, GLOBAL_PARAMETERS
-from radar_sim.config import TX_PARAMETERS, RX_PARAMETERS, TARGET_PARAMETERS
+from radar_sim.config import TX_PARAMETERS, RX_PARAMETERS, TARGET_PARAMETERS, ANTENNA_PARAMETERS
 
 from radar_sim.transmitter import Transmitter as TX
+from radar_sim.channel import PropagationChannel
 from radar_sim.receiver import Receiver as RX
 from radar_sim.target_modeling import PointTargets
 
@@ -30,10 +31,12 @@ class Pipeline:
         return tx_signal
 
 
-    def propagate_signal(self, targets):
+    def propagate_signal(self, tx_signal, targets):
         # propagate the signal
+        channel = PropagationChannel(GLOBAL_PARAMETERS, ANTENNA_PARAMETERS)
+        rx_signal = channel.propagate(tx_signal, targets)
 
-        return  
+        return rx_signal  
     
 
     def receive_echoes(self, rx_signal_type):
@@ -102,8 +105,8 @@ class Simulator:
         """
         print(f"\n Simulation Started \n")
         # Transmit signal
-        tx_signal = self.pipeline.transmit_signal(TX_PARAMETERS["type_tx_signal"])
-        print(f"TX Signal type: {TX_PARAMETERS['type_tx_signal']}")
+        tx_signal = self.pipeline.transmit_signal(GLOBAL_PARAMETERS["type_tx_signal"])
+        print(f"TX Signal type: {GLOBAL_PARAMETERS['type_tx_signal']}")
         
         # Build targets from configuration
         targets = self.build_targets(self.targets_type)
@@ -111,14 +114,18 @@ class Simulator:
              
         
         # Propagate signal through channel
-        ...
+        propagated_signal = self.pipeline.propagate_signal(tx_signal, targets)
         
         # Receive and process signal
         ...
         
         print(f"\n Simulation Complete \n")
         
-        return  
+        return {
+            "tx_signal": tx_signal,
+            #"rx_signal": rx_signal,
+            "targets": targets,
+        }  
         
         
 
