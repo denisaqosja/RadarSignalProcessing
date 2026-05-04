@@ -2,7 +2,7 @@
 This file contains the main steps in transmitting the radar signal
 """
 import torch 
-from utils import db_to_linear
+from radar_sim.utils import db_to_linear
 from radar_sim.waveform import PulseRadar, CWRadar
 from radar_sim.config import GLOBAL_PARAMETERS, TX_PARAMETERS, ANTENNA_PARAMETERS
 
