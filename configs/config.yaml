@@ -2,7 +2,7 @@ global_parameters:
   c: 300000000                      # speed of light
   type_tx_signal: pulse             # supported: chirp, pulsed, continuous wave
   bandwidth: 200000000              # bandwidth of the signal, 200e6 Hz
-  P_tx: 30                          # transmitted power in watts
+  P_tx: 60                          # transmitted power (dBm) 
 
 tx_parameters:
   fc: 10000000000                   # carrier freq, 10e9 Hz
@@ -19,8 +19,8 @@ tx_parameters:
 antenna_parameters:
   n_antenna_elements: 8             # number of antenna elements in the array
   ula_spacing: 0.5                  # spacing between antenna elements
-  Gain: 25                          # gain of the antenna
-  Losses: 3                         # losses in the system
+  Gain: 25                          # gain of the antenna (in dB)
+  Losses: 3                         # losses in the system (in dB)
 
 rx_parameters:
   target_rcs: 1                     # amplitude

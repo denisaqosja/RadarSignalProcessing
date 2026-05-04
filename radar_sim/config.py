@@ -25,7 +25,7 @@ def load_config(config_path='configs/config.yaml'):
         config = yaml.safe_load(f)
     
     # Calculate derived parameters
-    config['global_parameters']['fs'] = 1.2 * config['global_parameters']['bandwidth']
+    config['global_parameters']['fs'] = 5 * config['global_parameters']['bandwidth']
     config['global_parameters']['wavelength'] = config['global_parameters']['c'] / config['tx_parameters']['fc']
     
     return config
