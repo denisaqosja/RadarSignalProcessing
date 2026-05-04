@@ -55,3 +55,15 @@ def db_to_amplitude(value_db):
         Equivalent amplitude value.
     """
     return 10.0 ** (value_db / 20.0)
+
+
+def dBm_to_linear(tx_power):
+    """Convert dBm to linear scale.
+
+    Args:
+        tx_power: Transmitted power in dBm.
+
+    Returns:
+        Equivalent linear value.
+    """
+    return 10 ** ((tx_power - 30)/10)
